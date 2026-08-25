@@ -18,7 +18,7 @@ export class Srezai implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
-		description: 'Web access for AI agents: search, read, extract and research',
+		description: 'Доступ к вебу для AI-агентов: поиск, чтение, извлечение данных и исследование',
 		defaults: {
 			name: 'srezai',
 		},
@@ -40,17 +40,17 @@ export class Srezai implements INodeType {
 		},
 		properties: [
 			{
-				displayName: 'Operation',
+				displayName: 'Операция',
 				name: 'operation',
 				type: 'options',
 				noDataExpression: true,
 				default: 'webSearch',
 				options: [
 					{
-						name: 'Web Search',
+						name: 'Поиск в интернете',
 						value: 'webSearch',
-						action: 'Search the web',
-						description: 'Search pages by a text query (1 credit)',
+						action: 'Поиск в интернете',
+						description: 'Поиск страниц по текстовому запросу (1 кредит)',
 						routing: {
 							request: {
 								method: 'POST',
@@ -59,10 +59,10 @@ export class Srezai implements INodeType {
 						},
 					},
 					{
-						name: 'Image Search',
+						name: 'Поиск картинок',
 						value: 'imageSearch',
-						action: 'Search for images',
-						description: 'Search images by a text query (1 credit)',
+						action: 'Поиск картинок',
+						description: 'Поиск изображений по текстовому запросу (1 кредит)',
 						routing: {
 							request: {
 								method: 'POST',
@@ -71,10 +71,10 @@ export class Srezai implements INodeType {
 						},
 					},
 					{
-						name: 'Read URL',
+						name: 'Прочитать страницу',
 						value: 'readUrl',
-						action: 'Read a page as markdown',
-						description: 'Fetch one page and return clean markdown text (1 credit)',
+						action: 'Прочитать страницу как markdown',
+						description: 'Открыть одну страницу и вернуть чистый текст в markdown (1 кредит)',
 						routing: {
 							request: {
 								method: 'POST',
@@ -83,10 +83,10 @@ export class Srezai implements INodeType {
 						},
 					},
 					{
-						name: 'Extract',
+						name: 'Извлечь данные',
 						value: 'extract',
-						action: 'Extract structured data from a page',
-						description: 'Return JSON strictly following your schema (4 credits)',
+						action: 'Извлечь структурированные данные со страницы',
+						description: 'Вернуть JSON строго по вашей схеме (4 кредита)',
 						routing: {
 							request: {
 								method: 'POST',
@@ -95,10 +95,10 @@ export class Srezai implements INodeType {
 						},
 					},
 					{
-						name: 'Fetch Page (Screenshot)',
+						name: 'Скриншот страницы',
 						value: 'fetchPage',
-						action: 'Screenshot a page and return text',
-						description: 'Render a page and return a screenshot plus markdown (3 credits)',
+						action: 'Сделать скриншот страницы и вернуть текст',
+						description: 'Отрисовать страницу и вернуть скриншот и markdown (3 кредита)',
 						routing: {
 							request: {
 								method: 'POST',
@@ -107,10 +107,10 @@ export class Srezai implements INodeType {
 						},
 					},
 					{
-						name: 'Deep Research',
+						name: 'Глубокое исследование',
 						value: 'deepResearch',
-						action: 'Run multi step research',
-						description: 'Reconcile many sources into a written answer (20+ credits)',
+						action: 'Провести многошаговое исследование',
+						description: 'Свести множество источников в готовый ответ (20+ кредитов)',
 						routing: {
 							request: {
 								method: 'POST',
@@ -123,14 +123,14 @@ export class Srezai implements INodeType {
 
 			// ---------- query (search / image search / deep research) ----------
 			{
-				displayName: 'Query',
+				displayName: 'Запрос',
 				name: 'query',
 				type: 'string',
 				required: true,
 				default: '',
 				displayOptions: { show: { operation: ['webSearch', 'imageSearch', 'deepResearch'] } },
 				routing: { send: { type: 'body', property: 'query' } },
-				description: 'The search query or research topic',
+				description: 'Поисковый запрос или тема исследования',
 			},
 
 			// ---------- url (read / extract / fetch) ----------
@@ -143,12 +143,12 @@ export class Srezai implements INodeType {
 				placeholder: 'https://example.com/article',
 				displayOptions: { show: { operation: ['readUrl', 'extract', 'fetchPage'] } },
 				routing: { send: { type: 'body', property: 'url' } },
-				description: 'Full page URL (http/https)',
+				description: 'Полный URL страницы (http/https)',
 			},
 
 			// ---------- extract schema ----------
 			{
-				displayName: 'Schema (JSON)',
+				displayName: 'Схема (JSON)',
 				name: 'schema',
 				type: 'json',
 				required: true,
@@ -156,22 +156,22 @@ export class Srezai implements INodeType {
 				displayOptions: { show: { operation: ['extract'] } },
 				routing: { send: { type: 'body', property: 'schema' } },
 				description:
-					'Result schema. Shorthand supported: {"title":"string","price":"number?"}. "?" = optional, "[]" = array.',
+					'Схема результата. Поддерживается сокращённая форма: {"title":"string","price":"number?"}. «?» — необязательное поле, «[]» — массив.',
 			},
 
 			// ---------- optional fields ----------
 			{
-				displayName: 'Additional Options',
+				displayName: 'Дополнительные параметры',
 				name: 'additionalOptions',
 				type: 'collection',
-				placeholder: 'Add Option',
+				placeholder: 'Добавить параметр',
 				default: {},
 				displayOptions: {
 					show: { operation: ['webSearch', 'imageSearch', 'readUrl', 'extract', 'fetchPage'] },
 				},
 				options: [
 					{
-						displayName: 'Number of Results',
+						displayName: 'Количество результатов',
 						name: 'num',
 						type: 'number',
 						default: 10,
@@ -179,7 +179,7 @@ export class Srezai implements INodeType {
 						routing: { send: { type: 'body', property: 'num' } },
 					},
 					{
-						displayName: 'Max Characters',
+						displayName: 'Максимум символов',
 						name: 'maxChars',
 						type: 'number',
 						default: 4000,
@@ -187,42 +187,42 @@ export class Srezai implements INodeType {
 						routing: { send: { type: 'body', property: 'maxChars' } },
 					},
 					{
-						displayName: 'Engine',
+						displayName: 'Движок',
 						name: 'engine',
 						type: 'options',
 						default: 'auto',
 						options: [
-							{ name: 'Auto', value: 'auto' },
-							{ name: 'Fast', value: 'fast' },
-							{ name: 'Dynamic', value: 'dynamic' },
-							{ name: 'Stealth', value: 'stealth' },
+							{ name: 'Авто', value: 'auto' },
+							{ name: 'Быстрый', value: 'fast' },
+							{ name: 'Динамический', value: 'dynamic' },
+							{ name: 'Скрытный', value: 'stealth' },
 						],
 						displayOptions: { show: { '/operation': ['readUrl', 'extract'] } },
 						routing: { send: { type: 'body', property: 'engine' } },
 					},
 					{
-						displayName: 'Time Range',
+						displayName: 'Период',
 						name: 'timeRange',
 						type: 'options',
 						default: 'all',
 						options: [
-							{ name: 'All', value: 'all' },
-							{ name: 'Day', value: 'day' },
-							{ name: 'Week', value: 'week' },
-							{ name: 'Month', value: 'month' },
-							{ name: 'Year', value: 'year' },
+							{ name: 'За всё время', value: 'all' },
+							{ name: 'За день', value: 'day' },
+							{ name: 'За неделю', value: 'week' },
+							{ name: 'За месяц', value: 'month' },
+							{ name: 'За год', value: 'year' },
 						],
 						displayOptions: { show: { '/operation': ['webSearch', 'imageSearch'] } },
 						routing: { send: { type: 'body', property: 'timeRange' } },
 					},
 					{
-						displayName: 'Instruction',
+						displayName: 'Инструкция',
 						name: 'instruction',
 						type: 'string',
 						default: '',
 						displayOptions: { show: { '/operation': ['extract'] } },
 						routing: { send: { type: 'body', property: 'instruction' } },
-						description: 'Parsing hint when the schema alone is ambiguous',
+						description: 'Подсказка для разбора, если из схемы неочевидно',
 					},
 				],
 			},

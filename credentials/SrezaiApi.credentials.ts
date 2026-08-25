@@ -14,21 +14,21 @@ export class SrezaiApi implements ICredentialType {
 
 	properties: INodeProperties[] = [
 		{
-			displayName: 'API Key',
+			displayName: 'Ключ API',
 			name: 'apiKey',
 			type: 'string',
 			typeOptions: { password: true },
 			default: '',
 			required: true,
-			description: 'Your srezai.ru API key. Sent as a Bearer token.',
+			description: 'Ваш ключ API srezai.ru. Передаётся как Bearer-токен.',
 		},
 		{
-			displayName: 'Base URL',
+			displayName: 'Базовый URL',
 			name: 'baseUrl',
 			type: 'string',
 			default: 'https://srezai.ru',
 			required: true,
-			description: 'Base URL of the srezai API. Change only for staging or an isolated deployment.',
+			description: 'Базовый URL API srezai. Меняйте только для staging или изолированного развёртывания.',
 		},
 	];
 
