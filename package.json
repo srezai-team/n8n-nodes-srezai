@@ -1,0 +1,61 @@
+{
+  "name": "n8n-nodes-srezai",
+  "version": "0.1.0",
+  "description": "n8n community node for srezai.ru — web access for AI agents: search, read pages, extract structured data, screenshots, claim verification and deep research.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "srezai",
+    "web-search",
+    "scraping",
+    "mcp",
+    "ai-agent"
+  ],
+  "license": "MIT",
+  "homepage": "https://srezai.ru",
+  "author": {
+    "name": "srezai",
+    "email": "hello@srezai.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srezai-team/n8n-nodes-srezai.git"
+  },
+  "engines": {
+    "node": ">=22.16"
+  },
+  "main": "index.js",
+  "scripts": {
+    "build": "npx rimraf dist && tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/SrezaiApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Srezai/Srezai.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "gulp": "^5.0.0",
+    "jsonc-eslint-parser": "^3.3.0",
+    "prettier": "^3.3.0",
+    "rimraf": "^6.0.0",
+    "typescript": "^5.5.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
