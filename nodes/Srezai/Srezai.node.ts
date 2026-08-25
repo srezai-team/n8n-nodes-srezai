@@ -14,7 +14,7 @@ export class Srezai implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'srezai',
 		name: 'srezai',
-		icon: 'file:srezai.svg',
+		icon: 'file:node_logo.svg',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"]}}',
