@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-srezai",
-  "version": "0.1.2",
-  "description": "n8n community node for srezai.ru — web access for AI agents: search, read pages, extract structured data, screenshots, claim verification and deep research.",
+  "version": "0.1.3",
+  "description": "Community-нода n8n для srezai.ru — доступ к вебу для AI-агентов: поиск, чтение страниц, извлечение данных, скриншоты и глубокое исследование. | n8n community node for srezai.ru — web access for AI agents: search, read pages, extract structured data, screenshots and deep research.",
   "keywords": [
     "n8n-community-node-package",
     "n8n",

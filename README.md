@@ -1,54 +1,71 @@
 # n8n-nodes-srezai
 
-This is an n8n community node. It lets you use [srezai.ru](https://srezai.ru) — web access for AI agents — in your n8n workflows.
+Community-нода n8n для [srezai.ru](https://srezai.ru) — доступ к вебу для AI-агентов.
 
-srezai gives agents the web: search, page reading, structured extraction, screenshots, claim verification and deep research.
+srezai даёт агентам веб: поиск, чтение страниц, извлечение структурированных
+данных, скриншоты, проверку фактов и глубокое исследование. Ноду можно
+использовать и как инструмент AI-агента, и в Chain.
 
-[n8n](https://n8n.io) is a [fair-code licensed](https://docs.n8n.io/reference/license/) workflow automation platform.
+[n8n](https://n8n.io) — платформа автоматизации с [fair-code лицензией](https://docs.n8n.io/reference/license/).
 
-[Installation](#installation)
-[Operations](#operations)
-[Credentials](#credentials)
-[Usage](#usage)
-[Resources](#resources)
+## Установка
 
-## Installation
+В n8n: **Settings → Community Nodes → Install**, затем введите `n8n-nodes-srezai`.
+Подробнее — в [гайде по установке](https://docs.n8n.io/integrations/community-nodes/installation/).
 
-Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
+## Операции
 
-In n8n: **Settings > Community Nodes > Install**, then enter `n8n-nodes-srezai`.
+- **Поиск в интернете** — поиск страниц по текстовому запросу (1 кредит)
+- **Поиск картинок** — поиск изображений по текстовому запросу (1 кредит)
+- **Прочитать страницу** — открыть одну страницу и вернуть чистый markdown (1 кредит)
+- **Извлечь данные** — вернуть JSON строго по вашей схеме (4 кредита)
+- **Скриншот страницы** — отрисовать страницу и вернуть скриншот + markdown (3 кредита)
+- **Глубокое исследование** — свести множество источников в готовый ответ (20+ кредитов)
 
-## Operations
+Нода помечена `usableAsTool`, поэтому доступна как инструмент AI-агента и в Chain.
 
-- **Web Search** — search pages by a text query (1 credit)
-- **Image Search** — search images by a text query (1 credit)
-- **Read URL** — fetch one page and return clean markdown (1 credit)
-- **Extract** — return JSON strictly following your schema (4 credits)
-- **Fetch Page (Screenshot)** — render a page and return a screenshot + markdown (3 credits)
-- **Deep Research** — reconcile many sources into a written answer (20+ credits)
+> Примечание: `verify_claim` и `get_usage` доступны только через MCP-сервер
+> srezai, а не через REST API, поэтому в ноде их нет. Остаток квоты возвращается
+> в заголовках ответа `X-RateLimit-*`.
 
-The node is also usable as a tool by n8n AI Agents (`usableAsTool`).
+## Учётные данные
 
-> Note: `verify_claim` and `get_usage` are available only via the srezai MCP
-> server, not the REST API, so they are not exposed by this node. Remaining
-> quota is returned in `X-RateLimit-*` response headers.
+Нужен ключ API srezai.ru. Создайте его в личном кабинете, затем добавьте в n8n
+учётные данные **srezai API** и вставьте ключ. Ключ передаётся как `Bearer`-токен.
 
-## Credentials
+## Использование
 
-You need a srezai.ru API key. Create one in your srezai dashboard, then add
-**srezai API** credentials in n8n and paste the key. The key is sent as a
-`Bearer` token. The credential test calls the free `usage` endpoint.
+Добавьте ноду **srezai**, выберите операцию и учётные данные, заполните запрос
+или URL. Для **Извлечь данные** укажите JSON-схему с полями, которые хотите
+получить.
 
-## Usage
+## Ресурсы
 
-Add the **srezai** node, pick an operation, select your credential, and fill in
-the query / URL. For **Extract**, provide a JSON schema describing the fields
-you want back.
-
-## Resources
-
-- [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
+- [Документация по community-нодам n8n](https://docs.n8n.io/integrations/community-nodes/)
 - [srezai.ru](https://srezai.ru)
+
+---
+
+## English
+
+This is an n8n community node for [srezai.ru](https://srezai.ru) — web access
+for AI agents: search, page reading, structured extraction, screenshots, claim
+verification and deep research. The node is usable as an AI Agent tool and in
+Chains (`usableAsTool`).
+
+**Install:** in n8n, go to **Settings → Community Nodes → Install** and enter
+`n8n-nodes-srezai`.
+
+**Operations:** Web Search (1 credit), Image Search (1 credit), Read URL
+(1 credit), Extract structured data (4 credits), Fetch Page / Screenshot
+(3 credits), Deep Research (20+ credits).
+
+**Credentials:** create a srezai.ru API key in your dashboard, add **srezai API**
+credentials in n8n and paste the key. It is sent as a `Bearer` token.
+
+> `verify_claim` and `get_usage` are available only via the srezai MCP server,
+> not the REST API, so they are not exposed here. Remaining quota is returned in
+> `X-RateLimit-*` response headers.
 
 ## License
 
